@@ -7,17 +7,18 @@
 
         <%- include('./partials/nav.ejs');%>
 
-            <div class="container">
+            <div class="container" style="padding: 25px;">
                 <ul class="collection with-header">
 
                     <%if (items.length> 0) {
                         items.forEach(e => {%>
                         <li class="collection-item">
                             <div>
-                                <%=e.name%> $<%=e.price%><a href="# " class="secondary-content">
-                                            <i class="material-icons">delete</i>
-                                            <i class="material-icons">edit</i>
-                                        </a>
+                                <%=e.name%> $<%=e.price%>
+                                <a href="/items/<%=e.id%>" class="secondary-content">
+                                    <i class="material-icons">delete</i>
+                                    <i class="material-icons">edit</i>
+                                </a>
                             </div>
                         </li>
                         <% }); } else {%>
@@ -28,6 +29,7 @@
                             </li>
                             <%}%>
                 </ul>
+                <h6 style="padding: 20px; color: green;"><%=Message%></h6>
             </div>
     </body>
 

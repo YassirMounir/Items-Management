@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs');%>
+
+    <body>
+
+        <%- include('./partials/nav.ejs');%>
+
+            <div class="container" style="padding: 45px;">
+                <h4>Item Detail :</h4>
+                <div style="padding: 25px;">
+                    <h5>
+                        Item Name : <%=item.name%>
+                    </h5>
+                    <h5>
+                        Item Price : <%=item.price%>$
+                    </h5>
+                    <a href="#" class="secondary-content">
+                        <a class="delete btn" href="/delete-item/<%=item._id%>" style="margin: 15px;">Delete Item</a>
+                        <!-- <a class="delete btn modal-trigge" href="#edit-item_modal" style="margin: 15px;">Update Item</a>  -->
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Update Item</a>
+
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Update Item</h4>
+                    <!-- Enter The New Name : <input type="text" name="name">
+                  Enter The New Price : <input type="tel" name="price"> -->
+                    <div class="row" style="margin-top: 20px;">
+                        <form class="col s12" action="/update-item" method="post">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input placeholder="Name" id="first_name" type="text" name="name" class="validate">
+                                    <label for="name">Enter The New Name :</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="Price" id="first_name" type="text" name="price"
+                                        class="validate">
+                                    <label for="price">Enter The New Price :</label>
+                                </div>
+                            </div>
+                            <input type="tel" name="id" value="<%=item._id%>" hidden>
+                            <button type="submit" class="btn">Update</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer"> -->
+
+                <!-- </div> -->
+            </div>
+
+
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    var elems = document.querySelectorAll('.modal');
+                    var instances = M.Modal.init(elems);
+                });
+
+            </script>
+    </body>
+
+</html>
