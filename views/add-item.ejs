@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs');%>
+
+    <body>
+
+        <%- include('./partials/nav.ejs');%>
+
+            <div class="container">
+                <div class="row">
+                    <form class="col s12" action="/items" method="post">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">shopping_cart
+                                </i>
+                                <input id="item_name" type="text" class="validate" name="name" placeholder="Item Name">
+                                <!-- <label for="item_name">Item Name</label> -->
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">request_quote</i>
+                                <input id="price" type="tel" class="validate" name="price" placeholder="Price">
+                                <!-- <label for="icon_telephone">Price</label> -->
+                            </div>
+                        </div>
+                        <button class="btn">Add-Item</button>
+                    </form>
+                </div>
+            </div>
+    </body>
+
+</html>
