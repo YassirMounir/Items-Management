@@ -14,11 +14,17 @@
                         items.forEach(e => {%>
                         <li class="collection-item">
                             <div>
-                                <%=e.name%> $<%=e.price%>
-                                <a href="/items/<%=e.id%>" class="secondary-content">
-                                    <i class="material-icons">delete</i>
-                                    <i class="material-icons">edit</i>
-                                </a>
+                                <% if (e.price> 1){ %>
+                                    <%=e.name%> $
+                                        <%=e.price%>
+                                            <% } else { %>
+                                                <%=e.name%>
+                                                    // FREE
+                                                    <%}%>
+                                                        <a href="/items/<%=e.id%>" class="secondary-content">
+                                                            <i class="material-icons">more_horiz
+                                                            </i>
+                                                        </a>
                             </div>
                         </li>
                         <% }); } else {%>
@@ -29,7 +35,9 @@
                             </li>
                             <%}%>
                 </ul>
-                <h6 style="padding: 20px; color: green;"><%=Message%></h6>
+                <h6 style="padding: 20px; color: green;">
+                    <%=Message%>
+                </h6>
             </div>
     </body>
 

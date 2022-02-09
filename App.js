@@ -29,6 +29,9 @@ app.get("/get-items", (req, res) => {
   Item.find()
     .sort({ price: -1 })
     .then((result) => {
+      console.log("=======================================================");
+      console.log(result);
+      console.log("=======================================================");
       res.render("index", { items: result, Message });
       Message = "";
     })
@@ -37,6 +40,9 @@ app.get("/get-items", (req, res) => {
 
 app.post("/items", (req, res) => {
   const item = Item(req.body);
+  console.log("=======================================================");
+  console.log(item);
+  console.log("=======================================================");
   item
     .save()
     .then(() => {
@@ -52,7 +58,9 @@ app.post("/items", (req, res) => {
 });
 
 app.post("/update-item", (req, res) => {
-  // console.log(req.body);
+  console.log("=======================================================");
+  console.log(req.body);
+  console.log("=======================================================");
   // var id = req.body.id;
   // var name = req.body.name;
   // var price = req.body.price;
@@ -72,11 +80,17 @@ app.get("/add-item", (req, res) => {
 app.get("/items/:id", (req, res) => {
   const id = req.params.id;
   Item.findById(id).then((result) => {
+    console.log("=======================================================");
+    console.log(result);
+    console.log("=======================================================");
     res.render("item-detail", { item: result });
   });
 });
 
 app.get("/delete-item/:id", (req, res) => {
+  console.log("=======================================================");
+  console.log(req.params.id);
+  console.log("=======================================================");
   Item.findByIdAndDelete(req.params.id).then((result) => {
     Message = "Item Deleted Successfully";
     res.redirect("/get-items");
