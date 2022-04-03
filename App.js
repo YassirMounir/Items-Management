@@ -1,8 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const PORT = 8000;
 const mongodb =
-  "mongodb+srv://supercap:supercap123@items-project.rrlk0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://supercap:zdrhdzth@items-project.rrlk0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const Item = require("./modules/items");
 var ERROR1;
 var ERROR2;
@@ -14,8 +15,12 @@ app.use(express.urlencoded({ extended: true }));
 mongoose
   .connect(mongodb, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log("CONNECTED");
-    app.listen(8000);
+    console.log("DATA-BASE CONNECTED SUCCESFULLY");
+    // app.listen(8000);
+    app.listen(PORT, (err) => {
+      if (err) console.log("Error In Server Setup");
+      console.log(`SERVER LISTENING ON PORT : ${PORT}`);
+    });
   })
   .catch((err) => console.log(err));
 
@@ -58,15 +63,17 @@ app.post("/items", (req, res) => {
 });
 
 app.post("/update-item", (req, res) => {
+  var id = req.body.id;
+  var name = req.body.name;
+  var price = req.body.price;
   console.log("=======================================================");
-  console.log(req.body);
+  console.log(
+    "{ Id : " + id + " , Name : " + name + " , Price : " + price + " }"
+  );
   console.log("=======================================================");
-  // var id = req.body.id;
-  // var name = req.body.name;
-  // var price = req.body.price;
-  Item.findByIdAndUpdate(req.body.id, {
-    name: req.body.name,
-    price: req.body.price,
+  Item.findByIdAndUpdate(id, {
+    name: name,
+    price: price,
   }).then((result) => {
     Message = "Item Updated Successfully";
     res.redirect("/get-items");
